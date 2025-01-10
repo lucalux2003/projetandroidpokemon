@@ -14,11 +14,26 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    flavorDimensions += "environnement"
+    productFlavors {
+        create("development") {
+            dimension = "environnement"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+        }
+        create("pre-production") {
+            dimension = "environnement"
+            applicationIdSuffix = ".preprod"
+            versionNameSuffix = "-preprod"
+        }
+        create("production") {
+            dimension = "environnement"
+        }
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -37,6 +52,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
