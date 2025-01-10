@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">PokéGacha</string>
+    <string name="title_deck">Deck</string>
+    <string name="title_draw">Tirage</string>
+    <string name="title_profile">Profile</string>
+
+    <string-array name="sort_options">
+        <item>Aucun tri</item>
+        <item>Trier par nom</item>
+        <item>Trier par hp</item>
+    </string-array>
+
+        <string-array name="type_options">
+            <item>Fire</item>
+            <item>Water</item>
+            <item>Grass</item>
+            <item>Darkness</item>
+        </string-array>
+
+        <string-array name="rarity_options">
+            <item>Common</item>
+            <item>Rare</item>
+            <item>Very Rare</item>
+            <item>Legend</item>
+        </string-array>
+
+        <string-array name="bonus_options">
+            <item>Holo</item>
+            <item>Shiny</item>
+        </string-array>
+
+</resources>

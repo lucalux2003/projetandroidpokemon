@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/view"
+        android:src="@drawable/font_sans_rien_tel"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+
+
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/assets_roundborder_layout"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.588">
+
+
+        <EditText
+            android:id="@+id/registerEditUsername"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/assets_roundborder_edittext"
+            android:drawableStart="@mipmap/ic_login_username"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="text"
+            android:textColorHint="@color/hint_text" />
+
+
+        <EditText
+            android:id="@+id/registerEditEmail"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/assets_roundborder_edittext"
+            android:drawableStart="@mipmap/ic_login_email"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="text"
+            android:textColorHint="@color/hint_text" />
+
+        <EditText
+            android:id="@+id/registerEditPassword"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/assets_roundborder_edittext"
+            android:drawableStart="@mipmap/ic_login_password"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/hint_text" />
+
+        <EditText
+            android:id="@+id/registerEditPasswordConfirmation"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/assets_roundborder_edittext"
+            android:drawableStart="@mipmap/ic_login_password"
+            android:ems="10"
+            android:hint="Password confirmation"
+            android:inputType="textPassword"
+            android:textColorHint="@color/hint_text" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/assets_roundborder_button"
+            android:text="Register" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="80dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Or"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="80dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/registerPageLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:background="@drawable/assets_roundborder_button"
+            android:text="Already registered ?" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="320dp"
+        android:layout_height="160dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.052"
+        app:srcCompat="@drawable/pokemon_logo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

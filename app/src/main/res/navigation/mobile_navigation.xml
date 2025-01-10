@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_draw">
+
+    <fragment
+        android:id="@+id/navigation_deck"
+        android:name="com.projet.projetandroidpokemon.ui.deck.DeckFragment"
+        android:label="@string/title_deck"
+        tools:layout="@layout/fragment_deck" />
+
+    <fragment
+        android:id="@+id/navigation_draw"
+        android:name="com.projet.projetandroidpokemon.ui.draw.DrawFragment"
+        android:label="@string/title_draw"
+        tools:layout="@layout/fragment_draw" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.projet.projetandroidpokemon.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
