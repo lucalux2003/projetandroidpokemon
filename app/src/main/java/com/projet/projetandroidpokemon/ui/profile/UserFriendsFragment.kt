@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import com.google.zxing.integration.android.IntentIntegrator
 import com.projet.projetandroidpokemon.QrCodeFragment
 import com.projet.projetandroidpokemon.R
 
@@ -47,8 +48,21 @@ class UserFriendsFragment : Fragment() {
                 .commit()
         }
 
+        val scanButton: ImageButton = root.findViewById<ImageButton>(R.id.cameraButton)
+        scanButton.setOnClickListener {
+            startQRCodeScanner()
+        }
+
 
         return root
+    }
+
+    private fun startQRCodeScanner() {
+        val integrator = IntentIntegrator(requireActivity())
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+        integrator.setBeepEnabled(false)
+        integrator.setOrientationLocked(true)
+        integrator.initiateScan()
     }
 
     companion object {

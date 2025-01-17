@@ -1,11 +1,17 @@
 package com.projet.projetandroidpokemon
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.Toast
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.qrcode.QRCodeWriter
 
 
 /**
@@ -15,45 +21,48 @@ import android.widget.ImageButton
  */
 class QrCodeFragment : Fragment() {
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_qr_code, container, false)
 
-        val returnButton: ImageButton = root.findViewById<ImageButton>(R.id.backButton)
+        val returnButton: ImageButton = root.findViewById(R.id.backButton)
         returnButton.setOnClickListener {
-            // Go back to the previous fragment
             parentFragmentManager.popBackStack()
+        }
+
+        val qrCodeImageView: ImageView = root.findViewById(R.id.imageView7)
+
+        val userEmail = UserSessionManager(requireContext()).getUserEmail()
+        if (userEmail != null) {
+            val qrBitmap = generateQRCode(userEmail)
+            qrBitmap?.let {
+                qrCodeImageView.setImageBitmap(it)
+            }
+        } else {
+            Toast.makeText(requireContext(), "Utilisateur non connecté.", Toast.LENGTH_SHORT).show()
         }
 
         return root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment QrCodeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            QrCodeFragment().apply {
-                arguments = Bundle().apply {
-
+    private fun generateQRCode(data: String): Bitmap? {
+        val qrCodeWriter = QRCodeWriter()
+        return try {
+            val bitMatrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 512, 512)
+            val width = bitMatrix.width
+            val height = bitMatrix.height
+            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+            for (x in 0 until width) {
+                for (y in 0 until height) {
+                    bitmap.setPixel(x, y, if (bitMatrix[x, y]) android.graphics.Color.BLACK else android.graphics.Color.WHITE)
                 }
             }
+            bitmap
+        } catch (e: WriterException) {
+            e.printStackTrace()
+            null
+        }
     }
 }

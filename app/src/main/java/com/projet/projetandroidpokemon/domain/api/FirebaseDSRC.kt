@@ -56,4 +56,16 @@ object FirebaseDSRC {
             .await()
     }
 
+    suspend fun addFriendToFirebase(scannedEmail: String, email: String) {
+        if (email != null) {
+            val formattedEmail = formatEmailKey(email)
+            val friendFormattedEmail = formatEmailKey(scannedEmail)
+
+            val userFriendsRef = FirebaseDatabase.getInstance().getReference("userFriends").child(formattedEmail)
+            userFriendsRef.child(friendFormattedEmail).setValue(true).await()
+
+            val friendRef = FirebaseDatabase.getInstance().getReference("userFriends").child(friendFormattedEmail)
+            friendRef.child(formattedEmail).setValue(true).await()
+        }
+    }
 }

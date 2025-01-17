@@ -45,6 +45,6 @@ class DrawViewModel : ViewModel() {
     }
 
     fun clearError() {
-        _error.value = null
+        _error.value = ""
     }
 }
