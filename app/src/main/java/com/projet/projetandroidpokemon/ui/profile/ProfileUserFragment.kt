@@ -10,19 +10,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import com.projet.projetandroidpokemon.ui.profile.ProfileUserViewModel
+
 import androidx.fragment.app.viewModels
-import com.projet.projetandroidpokemon.ui.activity.LoginActivity
-import com.projet.projetandroidpokemon.ui.profile.UserAchivementsFragment
-import com.projet.projetandroidpokemon.ui.profile.UserFriendsFragment
-import com.projet.projetandroidpokemon.ui.profile.UserSettingsFragment
+import com.projet.projetandroidpokemon.ui.login.LoginActivity
+import com.projet.projetandroidpokemon.ui.profile.achievements.UserAchivementsFragment
+import com.projet.projetandroidpokemon.ui.profile.friends.UserFriendsFragment
+import com.projet.projetandroidpokemon.ui.profile.user.ProfileUserViewModel
+import com.projet.projetandroidpokemon.ui.profile.user.UserSettingsFragment
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfilUserFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileUserFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private val profileUserViewModel: ProfileUserViewModel by viewModels()
