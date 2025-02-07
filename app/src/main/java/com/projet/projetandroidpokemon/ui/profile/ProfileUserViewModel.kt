@@ -15,5 +15,7 @@ class ProfileUserViewModel(application: Application) : AndroidViewModel(applicat
         value = userSessionManager.getUserName() // Retrieve username or default
     }
     val username: LiveData<String> = _username
-
+    fun logoutUser(){
+        userSessionManager.clearSession()
+    }
 }

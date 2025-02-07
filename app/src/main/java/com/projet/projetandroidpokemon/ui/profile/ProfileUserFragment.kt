@@ -1,5 +1,6 @@
 package com.projet.projetandroidpokemon
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import com.projet.projetandroidpokemon.ui.profile.ProfileUserViewModel
 import androidx.fragment.app.viewModels
+import com.projet.projetandroidpokemon.ui.activity.LoginActivity
 import com.projet.projetandroidpokemon.ui.profile.UserAchivementsFragment
 import com.projet.projetandroidpokemon.ui.profile.UserFriendsFragment
 import com.projet.projetandroidpokemon.ui.profile.UserSettingsFragment
@@ -65,7 +68,13 @@ class ProfileUserFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+        val logoutButton : ImageButton = root.findViewById<ImageButton>(R.id.logoutButton)
 
+        logoutButton.setOnClickListener{
+            profileUserViewModel.logoutUser()
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
+        }
 
         return root
     }
