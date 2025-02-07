@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.projet.projetandroidpokemon.BuildConfig
 import com.projet.projetandroidpokemon.manager.InternetChecker
 import com.projet.projetandroidpokemon.databinding.ActivityLoginBinding
 import com.projet.projetandroidpokemon.ui.init.MainActivity
@@ -46,6 +47,8 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+
+        binding.versionTextView.text = "Version : ${BuildConfig.VERSION_NAME}"
     }
 
     private fun navigateToMainActivity() {
