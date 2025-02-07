@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon.ui.activity
+package com.projet.projetandroidpokemon.ui.login
 
 import android.app.Application
 import android.util.Log
@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.projet.projetandroidpokemon.UserSessionManager
+import com.projet.projetandroidpokemon.manager.UserSessionManager
 import com.projet.projetandroidpokemon.domain.api.FirebaseDSRC
 import com.projet.projetandroidpokemon.domain.database.PokemonCardDataBase
 import com.projet.projetandroidpokemon.domain.database.dao.UserDAO

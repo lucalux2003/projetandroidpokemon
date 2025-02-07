@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon
+package com.projet.projetandroidpokemon.manager
 
 import android.content.Context
 import android.net.ConnectivityManager

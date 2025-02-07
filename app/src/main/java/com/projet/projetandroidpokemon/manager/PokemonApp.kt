@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon
+package com.projet.projetandroidpokemon.manager
 
 import android.app.Application
 import com.projet.projetandroidpokemon.domain.database.PokemonCardDataBase

@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon.viewmodel
+package com.projet.projetandroidpokemon.ui.profile.friends
 
 import android.graphics.Bitmap
 import androidx.lifecycle.LiveData

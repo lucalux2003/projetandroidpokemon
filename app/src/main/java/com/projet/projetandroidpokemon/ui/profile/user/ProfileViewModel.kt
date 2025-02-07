@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon.ui.profile
+package com.projet.projetandroidpokemon.ui.profile.user
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

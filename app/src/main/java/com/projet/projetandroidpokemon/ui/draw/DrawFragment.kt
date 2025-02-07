@@ -9,14 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.projet.projetandroidpokemon.InternetChecker
-import com.projet.projetandroidpokemon.UserSessionManager
+import com.projet.projetandroidpokemon.manager.InternetChecker
+import com.projet.projetandroidpokemon.manager.UserSessionManager
 import com.projet.projetandroidpokemon.databinding.FragmentDrawBinding
 import com.projet.projetandroidpokemon.domain.api.FirebaseDSRC
 import com.projet.projetandroidpokemon.domain.database.PokemonCardDataBase
 import com.projet.projetandroidpokemon.model.PokemonCard
 import com.projet.projetandroidpokemon.model.PokemonUserCards
-import com.projet.projetandroidpokemon.ui.activity.MainActivity
+import com.projet.projetandroidpokemon.ui.init.MainActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

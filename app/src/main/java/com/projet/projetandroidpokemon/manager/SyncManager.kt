@@ -1,11 +1,10 @@
-package com.projet.projetandroidpokemon
+package com.projet.projetandroidpokemon.manager
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.projet.projetandroidpokemon.domain.database.PokemonCardDataBase

@@ -1,16 +1,14 @@
-package com.projet.projetandroidpokemon.ui.activity
+package com.projet.projetandroidpokemon.ui.login
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.projet.projetandroidpokemon.InternetChecker
+import com.projet.projetandroidpokemon.manager.InternetChecker
 import com.projet.projetandroidpokemon.databinding.ActivityLoginBinding
+import com.projet.projetandroidpokemon.ui.init.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
