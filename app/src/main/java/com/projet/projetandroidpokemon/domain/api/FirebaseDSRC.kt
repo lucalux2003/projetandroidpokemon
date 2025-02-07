@@ -56,4 +56,49 @@ object FirebaseDSRC {
             .await()
     }
 
+
+
+    suspend fun addFriend(userEmail: String, friendEmail: String) {
+        val formattedUserEmail = formatEmailKey(userEmail)
+        val formattedFriendEmail = formatEmailKey(friendEmail)
+
+        if (!areFriends(userEmail, friendEmail)) {
+            val userFriendsRef = database.reference.child("friends").child(formattedUserEmail)
+            val friendFriendsRef = database.reference.child("friends").child(formattedFriendEmail)
+
+            userFriendsRef.child(formattedFriendEmail).setValue(true).await()
+
+            friendFriendsRef.child(formattedUserEmail).setValue(true).await()
+        }
+    }
+
+
+    suspend fun removeFriend(userEmail: String, friendEmail: String) {
+        val formattedUserEmail = formatEmailKey(userEmail)
+        val formattedFriendEmail = formatEmailKey(friendEmail)
+
+        val userFriendsRef = database.reference.child("friends").child(formattedUserEmail)
+        val friendFriendsRef = database.reference.child("friends").child(formattedFriendEmail)
+
+        userFriendsRef.child(formattedFriendEmail).removeValue().await()
+        friendFriendsRef.child(formattedUserEmail).removeValue().await()
+    }
+
+    suspend fun getFriends(userEmail: String): List<String> {
+        val formattedUserEmail = formatEmailKey(userEmail)
+        val snapshot = database.reference.child("friends").child(formattedUserEmail).get().await()
+        return if (snapshot.exists()) {
+            snapshot.children.mapNotNull { it.key }
+        } else {
+            emptyList()
+        }
+    }
+
+    suspend fun areFriends(userEmail: String, friendEmail: String): Boolean {
+        val formattedUserEmail = formatEmailKey(userEmail)
+        val formattedFriendEmail = formatEmailKey(friendEmail)
+
+        val snapshot = database.reference.child("friends").child(formattedUserEmail).child(formattedFriendEmail).get().await()
+        return snapshot.exists()
+    }
 }
