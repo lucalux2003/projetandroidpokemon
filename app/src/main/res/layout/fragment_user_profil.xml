@@ -121,7 +121,7 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/logoutButton3"
+            android:id="@+id/logoutButton"
             android:layout_width="51dp"
             android:layout_height="58dp"
             android:background="@android:color/transparent"
