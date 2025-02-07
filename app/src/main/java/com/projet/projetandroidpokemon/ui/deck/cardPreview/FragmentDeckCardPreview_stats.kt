@@ -1,5 +1,6 @@
-package com.projet.projetandroidpokemon
+package com.projet.projetandroidpokemon.ui.deck.cardPreview
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +10,15 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.projet.projetandroidpokemon.R
 import com.projet.projetandroidpokemon.model.PokemonCard
 
 /**
  * A simple [Fragment] subclass.
- * Use the [FragmentDeckCardPreview_attaques.newInstance] factory method to
+ * Use the [FragmentDeckCardPreview_stats.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FragmentDeckCardPreview_attaques : Fragment() {
+class FragmentDeckCardPreview_stats : Fragment() {
     // TODO: Correct the problem with getSerializable that is deprecied
     private var pokemonCard: PokemonCard? = null
 
@@ -25,6 +27,7 @@ class FragmentDeckCardPreview_attaques : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,22 +36,23 @@ class FragmentDeckCardPreview_attaques : Fragment() {
             pokemonCard = it.getParcelable<PokemonCard>("PokemonCard") as PokemonCard
 
         }
-        val root = inflater.inflate(R.layout.fragment_deck_card_preview_attaques, container, false)
+        val root = inflater.inflate(R.layout.fragment_deck_card_preview_stats, container, false)
 
         val bundle = Bundle().apply {
             putParcelable("PokemonCard", pokemonCard)
         }
 
-        val fragobjStats = FragmentDeckCardPreview_stats().apply {
+        // Create and set arguments for the Fragment
+        val fragobjAttaques = FragmentDeckCardPreview_attaques().apply {
             arguments = bundle
         }
 
-        val statsButton: Button = root.findViewById<Button>(R.id.statsButton)
-        statsButton.setOnClickListener {
+        val attaquesButton: Button = root.findViewById<Button>(R.id.attaquesButton)
+        attaquesButton.setOnClickListener {
             // Go back to the previous fragment
             val fragmentManager = requireActivity().supportFragmentManager
             fragmentManager.beginTransaction()
-                .replace(R.id.pokemonPreview, fragobjStats)
+                .replace(R.id.pokemonPreview, fragobjAttaques)
                 .addToBackStack(null)
                 .commit()
         }
@@ -66,6 +70,7 @@ class FragmentDeckCardPreview_attaques : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+
 
         val closeButton: ImageButton = root.findViewById<ImageButton>(R.id.closeImageButton)
         closeButton.setOnClickListener {
@@ -93,6 +98,22 @@ class FragmentDeckCardPreview_attaques : Fragment() {
         Glide.with(requireContext())
             .load(imageUrl)
             .into(cardDisplayButton)
+
+
+        val hp: TextView = view.findViewById(R.id.cardInputPV)
+        hp.text = pokemonCard?.hp ?: "Pokemon pv"
+
+        val types: TextView = view.findViewById(R.id.cardInputType)
+        types.text = pokemonCard?.types.toString() ?: "Pokemon types"
+
+        val retreat: TextView = view.findViewById(R.id.cardInputRetreat)
+        retreat.text = pokemonCard?.retreatCost.toString() ?: "Pokemon types"
+
+        val weakness: TextView = view.findViewById(R.id.cardInputWeakness)
+        val weaknessesText = pokemonCard?.weaknesses?.joinToString(", ") { weakness ->
+            "${weakness.type}: ${weakness.value}"
+        } ?: "Pokemon types"
+        weakness.text = weaknessesText
 
     }
 }

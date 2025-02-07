@@ -1,14 +1,17 @@
 package com.projet.projetandroidpokemon.adapter
 
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.projet.projetandroidpokemon.R
 import com.projet.projetandroidpokemon.model.PokemonCard
+import com.projet.projetandroidpokemon.ui.deck.cardPreview.FragmentDeckCardPreview_stats
 
 class CardAdapter(private var cardList: List<PokemonCard>) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
@@ -24,13 +27,32 @@ class CardAdapter(private var cardList: List<PokemonCard>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val card = cardList[position]
 
-        val imageUrl = card.images?.small
-        Log.d("imageurl", "onBindViewHolder: $imageUrl")
+        val imageUrl = card.images?.large
         if (imageUrl != null && imageUrl.isNotEmpty()) {
             Glide.with(holder.itemView.context)
                 .load(imageUrl)
                 .into(holder.cardImage)
         }
+
+        holder.itemView.setOnClickListener {
+            // Create a Bundle
+            val bundle = Bundle().apply {
+                putParcelable("PokemonCard", card)
+            }
+
+            // Create and set arguments for the Fragment
+            val fragobj = FragmentDeckCardPreview_stats().apply {
+                arguments = bundle
+            }
+
+            // Get the FragmentManager and begin a transaction
+            val fragmentManager = (holder.itemView.context as AppCompatActivity).supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.pokemonPreview, fragobj)
+                .addToBackStack(null)
+                .commit()
+        }
+
     }
 
     override fun getItemCount(): Int {

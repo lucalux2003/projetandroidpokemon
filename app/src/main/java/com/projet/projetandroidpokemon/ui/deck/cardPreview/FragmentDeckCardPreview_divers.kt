@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon
+package com.projet.projetandroidpokemon.ui.deck.cardPreview
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.projet.projetandroidpokemon.R
 import com.projet.projetandroidpokemon.model.PokemonCard
 
 /**
