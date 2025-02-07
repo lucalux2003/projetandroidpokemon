@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Pop_up_achivement">
+    tools:context=".ui.profile.achievements.Pop_up_achivement">
 
     <LinearLayout
         android:layout_width="match_parent"

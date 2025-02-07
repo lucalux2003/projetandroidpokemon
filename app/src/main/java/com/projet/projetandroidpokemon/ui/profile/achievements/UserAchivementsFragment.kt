@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon.ui.profile
+package com.projet.projetandroidpokemon.ui.profile.achievements
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

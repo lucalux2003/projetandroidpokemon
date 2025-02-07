@@ -1,10 +1,11 @@
-package com.projet.projetandroidpokemon.ui.activity
+package com.projet.projetandroidpokemon.ui.init
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.projet.projetandroidpokemon.R
+import com.projet.projetandroidpokemon.ui.login.LoginActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

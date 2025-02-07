@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon
+package com.projet.projetandroidpokemon.ui.profile.friends
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.projet.projetandroidpokemon.model.User
-import com.projet.projetandroidpokemon.viewmodel.QrCodeViewModel
+import com.projet.projetandroidpokemon.R
+import com.projet.projetandroidpokemon.manager.UserSessionManager
 
 class QrCodeFragment : Fragment() {
 

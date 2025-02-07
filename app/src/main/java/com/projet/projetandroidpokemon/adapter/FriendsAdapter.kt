@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon.ui.profile
+package com.projet.projetandroidpokemon.adapter
 
 import android.view.LayoutInflater
 import android.view.View

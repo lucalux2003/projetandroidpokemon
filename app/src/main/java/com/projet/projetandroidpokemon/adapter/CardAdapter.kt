@@ -1,13 +1,13 @@
-package com.projet.projetandroidpokemon
+package com.projet.projetandroidpokemon.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.projet.projetandroidpokemon.R
 import com.projet.projetandroidpokemon.model.PokemonCard
 
 class CardAdapter(private var cardList: List<PokemonCard>) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {

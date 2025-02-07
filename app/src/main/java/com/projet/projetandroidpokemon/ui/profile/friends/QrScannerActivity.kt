@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon.ui.activity
+package com.projet.projetandroidpokemon.ui.profile.friends
 
 import android.app.Activity
 import android.content.Intent

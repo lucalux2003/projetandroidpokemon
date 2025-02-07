@@ -1,4 +1,4 @@
-package com.projet.projetandroidpokemon.ui.profile
+package com.projet.projetandroidpokemon.ui.profile.friends
 
 import android.app.Activity
 import android.content.Intent
@@ -11,14 +11,11 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.projet.projetandroidpokemon.QrCodeFragment
-import com.projet.projetandroidpokemon.ui.activity.QrScannerActivity
 import com.projet.projetandroidpokemon.R
-import com.projet.projetandroidpokemon.UserSessionManager
-import com.projet.projetandroidpokemon.viewmodel.UserFriendsViewModel
+import com.projet.projetandroidpokemon.manager.UserSessionManager
+import com.projet.projetandroidpokemon.adapter.FriendsAdapter
 
 class UserFriendsFragment : Fragment() {
 
