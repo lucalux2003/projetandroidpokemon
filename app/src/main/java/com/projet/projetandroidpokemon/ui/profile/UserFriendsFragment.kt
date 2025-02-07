@@ -1,86 +1,95 @@
 package com.projet.projetandroidpokemon.ui.profile
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import com.google.zxing.integration.android.IntentIntegrator
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.projet.projetandroidpokemon.QrCodeFragment
+import com.projet.projetandroidpokemon.ui.activity.QrScannerActivity
 import com.projet.projetandroidpokemon.R
+import com.projet.projetandroidpokemon.UserSessionManager
+import com.projet.projetandroidpokemon.viewmodel.UserFriendsViewModel
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [UserFriendsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class UserFriendsFragment : Fragment() {
 
+    private val userFriendsViewModel: UserFriendsViewModel by viewModels()
+    private lateinit var currentUserEmail: String
+
+    private val QR_SCAN_REQUEST_CODE = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
 
-        }
+        val sessionManager = UserSessionManager(requireContext())
+        currentUserEmail = sessionManager.getUserEmail()
+            ?: throw IllegalStateException("Aucun e-mail enregistré dans la session")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val root = inflater.inflate(R.layout.fragment_user_friends, container, false)
 
-        val returnButton: ImageButton = root.findViewById<ImageButton>(R.id.backButton)
+        val returnButton: ImageButton = root.findViewById(R.id.backButton)
         returnButton.setOnClickListener {
-            // Go back to the previous fragment
             parentFragmentManager.popBackStack()
         }
 
-        val qrCodeButton: ImageButton = root.findViewById<ImageButton>(R.id.QRCodeButton)
+        val qrCodeButton: ImageButton = root.findViewById(R.id.QRCodeButton)
         qrCodeButton.setOnClickListener {
             val qrCodeFragment = QrCodeFragment()
-
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerView, qrCodeFragment,null)
+                .replace(R.id.fragmentContainerView, qrCodeFragment, null)
                 .addToBackStack(null)
                 .commit()
         }
 
-        val scanButton: ImageButton = root.findViewById<ImageButton>(R.id.cameraButton)
+        val scanButton: ImageButton = root.findViewById(R.id.cameraButton)
         scanButton.setOnClickListener {
-            startQRCodeScanner()
+            val intent = Intent(requireContext(), QrScannerActivity::class.java)
+            startActivityForResult(intent, QR_SCAN_REQUEST_CODE)
         }
 
+        val friendsRecyclerView: RecyclerView = root.findViewById(R.id.friendsRecyclerView)
+        friendsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val friendsAdapter = FriendsAdapter(emptyList())
+        friendsRecyclerView.adapter = friendsAdapter
+
+        userFriendsViewModel.friendsList.observe(viewLifecycleOwner) { friends ->
+            friendsAdapter.updateFriends(friends)
+        }
+
+        userFriendsViewModel.addFriendResult.observe(viewLifecycleOwner) { success ->
+            if (success) {
+                Toast.makeText(requireContext(), "Ami ajouté avec succès !", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+        userFriendsViewModel.loadFriends(currentUserEmail)
 
         return root
     }
 
-    private fun startQRCodeScanner() {
-        val integrator = IntentIntegrator(requireActivity())
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
-        integrator.setBeepEnabled(false)
-        integrator.setOrientationLocked(true)
-        integrator.initiateScan()
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UserFriends.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UserFriendsFragment().apply {
-                arguments = Bundle().apply {
-
-                }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == QR_SCAN_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val scannedEmail = data?.getStringExtra("scanned_email")
+            Log.d("scannedEmail",scannedEmail+"")
+            scannedEmail?.let {
+                userFriendsViewModel.addFriend(currentUserEmail, it)
             }
+        }
     }
 }

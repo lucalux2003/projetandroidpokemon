@@ -29,7 +29,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="95dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -38,14 +38,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
                 android:src="@mipmap/ic_friends_qrcode" />
 
             <ImageButton
                 android:id="@+id/cameraButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
                 android:src="@mipmap/ic_friends_camera" />
 
@@ -74,11 +76,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="?android:attr/listDivider" />
-
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/friendsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="442dp"
-                android:orientation="vertical"></LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                />
+
 
         </LinearLayout>
 

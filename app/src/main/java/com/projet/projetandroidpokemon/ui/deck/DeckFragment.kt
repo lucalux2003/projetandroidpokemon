@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.chip.Chip
 import com.projet.projetandroidpokemon.CardAdapter
 import com.projet.projetandroidpokemon.UserSessionManager
 import com.projet.projetandroidpokemon.databinding.FragmentDeckBinding
