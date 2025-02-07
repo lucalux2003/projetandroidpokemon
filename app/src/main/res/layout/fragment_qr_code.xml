@@ -4,25 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QrCodeFragment">
+    tools:context=".ui.profile.friends.QrCodeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:backgroundTint="#00FFFFFF"
             android:src="@mipmap/ic__menu_back" />
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_weight="1"
             tools:src="@tools:sample/avatars" />
     </LinearLayout>
+
+
 
 </FrameLayout>
