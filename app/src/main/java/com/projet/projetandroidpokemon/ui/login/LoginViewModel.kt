@@ -10,11 +10,14 @@ import com.projet.projetandroidpokemon.manager.UserSessionManager
 import com.projet.projetandroidpokemon.domain.api.FirebaseDSRC
 import com.projet.projetandroidpokemon.domain.database.PokemonCardDataBase
 import com.projet.projetandroidpokemon.domain.database.dao.UserDAO
+import com.projet.projetandroidpokemon.model.User
 import kotlinx.coroutines.launch
 import java.security.MessageDigest
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private val userDAO: UserDAO = PokemonCardDataBase.getInstance().userDAO()
+    private val userSessionManager = UserSessionManager(application)
+
     private val _loginResult = MutableLiveData<Boolean>()
     val loginResult: LiveData<Boolean> = _loginResult
 
@@ -29,14 +32,18 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             val localUser = userDAO.getUserFromMail(email)
 
             if (localUser != null && localUser.password == hashedPassword) {
+                userSessionManager.saveUser(email, localUser.name)
                 _loginResult.value = true
-                UserSessionManager(getApplication()).saveUser(email, localUser.name)
             } else if (isInternetAvailable) {
                 try {
                     val isAuthenticated = FirebaseDSRC.authenticateUser(email, hashedPassword)
                     if (isAuthenticated) {
-                        localUser?.let { userDAO.insertUser(it) }
-                        UserSessionManager(getApplication()).saveUser(email, localUser.name)
+                        val firebaseUser = FirebaseDSRC.getUserByEmail(email)
+                        if (firebaseUser != null) {
+                            userDAO.insertUser(firebaseUser)
+
+                            userSessionManager.saveUser(email, firebaseUser.name)
+                        }
                     }
                     _loginResult.value = isAuthenticated
                 } catch (e: Exception) {
@@ -65,7 +72,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
-
 
     private fun hashPassword(password: String): String {
         val bytes = password.toByteArray()
