@@ -27,11 +27,10 @@ class LoginActivity : AppCompatActivity() {
 
         val savedEmail = userSessionManager.getUserEmail()
         val isLoggedIn = userSessionManager.isUserLoggedIn()
-        Log.d("userconnect", "Email récupéré: $savedEmail, isLoggedIn: $isLoggedIn")
 
         if (isLoggedIn) {
             navigateToMainActivity()
-            Toast.makeText(this, "Connecté", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Connecté avec : "+savedEmail, Toast.LENGTH_SHORT).show()
             return
         }
 

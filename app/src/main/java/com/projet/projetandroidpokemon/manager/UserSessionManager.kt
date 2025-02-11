@@ -1,6 +1,7 @@
 package com.projet.projetandroidpokemon.manager
 
 import android.content.Context
+import android.util.Log
 
 class UserSessionManager(context: Context) {
     private val prefs = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
@@ -14,9 +15,16 @@ class UserSessionManager(context: Context) {
         }
     }
 
-    fun isUserLoggedIn(): Boolean = prefs.getBoolean("IS_LOGGED_IN", false)
+    fun getUserEmail(): String? {
+        val email = prefs.getString("USER_EMAIL", null)
+        return email
+    }
 
-    fun getUserEmail(): String? = prefs.getString("USER_EMAIL", null)
+    fun isUserLoggedIn(): Boolean {
+        val loggedIn = prefs.getBoolean("IS_LOGGED_IN", false)
+        return loggedIn
+    }
+
     fun getUserName(): String? = prefs.getString("USER_NAME", null)
 
     fun clearSession() {
