@@ -17,23 +17,24 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
-    private lateinit var userSessionManager: UserSessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        userSessionManager = UserSessionManager(this)
+        val userSessionManager = UserSessionManager(this)
 
-        Log.d("userconnect", userSessionManager.isUserLoggedIn().toString())
+        val savedEmail = userSessionManager.getUserEmail()
+        val isLoggedIn = userSessionManager.isUserLoggedIn()
+        Log.d("userconnect", "Email récupéré: $savedEmail, isLoggedIn: $isLoggedIn")
 
-        if (userSessionManager.isUserLoggedIn()) {
+        if (isLoggedIn) {
             navigateToMainActivity()
             Toast.makeText(this, "Connecté", Toast.LENGTH_SHORT).show()
-
             return
         }
+
 
         if (InternetChecker(this).isInternetAvailable()) {
             loginViewModel.synchronizeUsersFromFirebase()
