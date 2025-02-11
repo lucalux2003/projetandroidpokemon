@@ -13,19 +13,10 @@ import com.bumptech.glide.Glide
 import com.projet.projetandroidpokemon.R
 import com.projet.projetandroidpokemon.model.PokemonCard
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentDeckCardPreview_stats.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentDeckCardPreview_stats : Fragment() {
-    // TODO: Correct the problem with getSerializable that is deprecied
     private var pokemonCard: PokemonCard? = null
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(

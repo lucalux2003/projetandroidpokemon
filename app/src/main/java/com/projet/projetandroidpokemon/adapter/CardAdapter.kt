@@ -40,12 +40,10 @@ class CardAdapter(private var cardList: List<PokemonCard>) : RecyclerView.Adapte
                 putParcelable("PokemonCard", card)
             }
 
-            // Create and set arguments for the Fragment
             val fragobj = FragmentDeckCardPreview_stats().apply {
                 arguments = bundle
             }
 
-            // Get the FragmentManager and begin a transaction
             val fragmentManager = (holder.itemView.context as AppCompatActivity).supportFragmentManager
             fragmentManager.beginTransaction()
                 .replace(R.id.pokemonPreview, fragobj)

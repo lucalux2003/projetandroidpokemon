@@ -9,18 +9,7 @@ import android.widget.ImageButton
 import com.projet.projetandroidpokemon.R
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [UserAchivementsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class UserAchivementsFragment : Fragment() {
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,17 +25,5 @@ class UserAchivementsFragment : Fragment() {
 
 
         return root
-    }
-
-    companion object {
-
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UserAchivementsFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
     }
 }

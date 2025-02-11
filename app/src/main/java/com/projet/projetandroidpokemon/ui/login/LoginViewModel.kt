@@ -47,7 +47,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                     }
                     _loginResult.value = isAuthenticated
                 } catch (e: Exception) {
-                    Log.e("LoginViewModel", "Firebase authentication error: ${e.message}")
+                    Log.e("LoginViewModel", "Firebase auth error: ${e.message}")
                     _loginResult.value = false
                 }
             } else {
@@ -66,9 +66,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         userDAO.insertUser(user)
                     }
                 }
-                Log.d("LoginViewModel", "Firebase users synchronized with local database.")
+                Log.d("LoginViewModel", "Firebase local data.")
             } catch (e: Exception) {
-                Log.e("LoginViewModel", "Error synchronizing users from Firebase: ${e.message}")
+                Log.e("LoginViewModel", "Error synchro users Firebase: ${e.message}")
             }
         }
     }
