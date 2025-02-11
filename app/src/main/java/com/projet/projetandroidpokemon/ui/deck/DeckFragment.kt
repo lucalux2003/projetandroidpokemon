@@ -57,7 +57,7 @@ class DeckFragment : Fragment() {
             val userEmail = UserSessionManager(requireContext()).getUserEmail()
             isFromApi = false
             currentPage = 1
-            binding.deckTxt.text = "Votre deck"
+            binding.deckTxt.text = "Mes deck"
             viewModel.resetCards()
             viewModel.loadCards(userEmail = userEmail, page = currentPage)
         }

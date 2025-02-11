@@ -20,7 +20,6 @@ class DeckViewModel : ViewModel() {
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
     private val _error = MutableStateFlow<String?>(null)
-    val error: StateFlow<String?> = _error.asStateFlow()
 
     private var selectedType: String? = null
     private var selectedRarity: String? = null
